@@ -1,0 +1,217 @@
+//foreignObject
+foreignObject {
+	div {
+		-webkit-touch-callout: none;
+		/* iOS Safari */
+		-webkit-user-select: none;
+		/* Safari */
+		-khtml-user-select: none;
+		/* Konqueror HTML */
+		-moz-user-select: none;
+		/* Firefox */
+		-ms-user-select: none;
+		/* Internet Explorer/Edge */
+		user-select: none;
+		/* Non-prefixed version, currently supported by Chrome and Opera */
+	}
+	body {
+		width: 100%;
+		height: 100%;
+		margin: 0;
+	}
+}
+
+//button
+.button {
+	fill: #fff;
+	cursor: pointer;
+	rect {
+		stroke: #999faa;
+		stroke-width: 1px;
+		fill: url(#button);
+		cursor: pointer;
+	}
+	rect {
+		&:hover {
+			fill: url(#button-hover);
+		}
+		&:active {
+			fill: url(#button);
+		}
+	}
+}
+
+#button-gradient-start {
+	stop-color: #3093C7;
+}
+
+#button-gradient-stop {
+	stop-color: #1C5A85;
+}
+
+#button-hover-gradient-start {
+	stop-color: #26759E;
+}
+
+#button-hover-gradient-stop {
+	stop-color: #133D5B;
+}
+
+//modal dialog
+.modal {
+	position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+	height: 100%;
+	visibility: hidden;
+	
+	.outer {
+		background: #797979;
+		opacity: 0.8;
+		position: fixed;
+		width: 100%;
+		height: 100%;
+	}
+	.inner {
+		background: #fff;
+		border: 1px #333 solid;
+		position: absolute;
+		top: 50%;
+		left: 50%;
+	}
+	.close {
+		cursor: pointer;
+		position: absolute;
+		top: 3px;
+		right: 13px;
+		width: 10px;
+		height: 10px;
+		fill: #999;
+		stroke: #fff;
+		stroke-width: 1;
+	}
+	.title {
+		padding: 20px 10px;
+		font-weight: bold;
+		text-align: center;
+	}
+	.content {
+		margin: 10px;
+	}
+	.footer {
+		position: absolute;
+		left: 10px;
+		right: 10px;
+		bottom: 0;
+		text-align: center;
+		>* {
+			margin: 8px;
+		}
+	}
+}
+
+//tree
+$ul-padding: 40px;
+$li-height: 15px;
+$li-padding: 5px;
+$li-padding-drag: 5px;
+$li-font-size: 11px;
+$bg-color: #c8e4f8;
+
+.treeItem, .treeItemDrag {
+	padding: $li-padding 2px;
+	font-size: $li-font-size;
+	border-radius: 5px;
+	-webkit-border-radius: 5px;
+	-moz-border-radius: 5px;
+}
+
+.treeItemDrag {
+	border: 1px solid #ccc;
+	padding: $li-padding-drag 10px;
+	background-color: $bg-color;
+	cursor: move;
+}
+
+.tree {
+	padding-left: 10px;
+
+	ul {
+		padding-left: $ul-padding;
+	}
+	
+	ul>li {
+		list-style-type: none;
+		position: relative;
+
+		&::after {
+			content: '';
+			position: absolute;
+			top: $li-height;
+			width: $ul-padding / 2;
+			left: -$ul-padding / 2;
+			border-top: 1px solid #ccc;
+		}
+		label::before {
+			content: '';
+			position: absolute;
+			border-left: 1px solid #ccc;
+			left: -$ul-padding / 2;
+			height: 100%;
+			top: 0;
+		}
+		li:last-child>label::before {
+			height: $li-height;
+		}
+		label {
+			@extend .treeItem;
+			cursor: pointer;
+			display: inline-block;
+			color: #fff;
+			padding-left: 12px;
+			margin-top: $li-height - $li-font-size / 2 - $li-padding;
+		}
+		label[draggable] {
+			@extend .treeItemDrag;
+			cursor: move;
+			background-color: transparent;
+			margin-top: $li-height - $li-font-size / 2 - $li-padding-drag;
+		}
+		label:hover {
+			color: #000;
+			background-color: $bg-color;
+		}
+	}
+	>ul > li {
+		&>label::before,
+		&::after {
+			border: 0;
+		}
+	}
+
+	input, input ~ ul {
+		display: none;
+	}
+
+	input:checked ~ ul {
+		display: block;
+	}
+
+	input + label::after  {
+		content: '';
+		position: absolute;
+		left: 3px;
+		top: 10px;
+		border: 5px solid transparent;
+		border-left-color: black;
+		margin-right: 10px;
+	}
+
+	input:checked + label::after {
+		left: 0;
+		top: 13px;
+		border: 5px solid transparent;
+		border-top-color: black;
+	}
+}

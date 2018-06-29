@@ -1,0 +1,282 @@
+@import "./common";
+@import "./components";
+
+$active-line-color: #f00;
+
+.arrow_active {
+	fill: $active-line-color;
+}
+
+#board {
+	.lines>g {
+		polyline {
+			stroke: #333;
+			stroke-width: 1px;
+			stroke-opacity: .6;
+			cursor: pointer;
+		}
+		&:hover polyline {
+			stroke: $active-line-color;
+			stroke-opacity: 1;
+		}
+
+		&.action {
+			.draw {
+				marker-end: url("#arrow_action");
+			}
+
+			&:hover .draw {
+				marker-end: url("#arrow_action_active");
+			}
+		}
+
+		&.end {
+			.draw {
+				marker-end: url("#arrow_end");
+			}
+
+			&:hover .draw {
+				marker-end: url("#arrow_end_active");
+			}
+		}
+
+		&.condition {
+			.draw {
+				marker-end: url("#arrow_condition");
+			}
+
+			&:hover .draw {
+				marker-end: url("#arrow_condition_active");
+			}
+		}
+
+		&.fork {
+			.draw {
+				marker-end: url("#arrow_fork");
+			}
+
+			&:hover .draw {
+				marker-end: url("#arrow_fork_active");
+			}
+		}
+	}
+	.joinTo .symbol {
+		fill: #31708f;
+		stroke: #f00;
+	}
+	.joinTo .title {
+		color: #fff;
+	}
+}
+
+[type=start] circle,
+[type=end] circle {
+	fill: #000;
+	stroke: #f00;
+	stroke-width: 2px;
+}
+[type=condition] {
+	.symbol {
+		fill: #dfedf7;
+		stroke: #333;
+		stroke-width: 2px;
+		&:hover {
+			fill: #c1ebf8;
+		}
+	}
+
+	div {
+		text-overflow: ellipsis;
+		overflow: hidden;
+		white-space: nowrap;
+		text-shadow: -1px 0 #fff, 0 1px #fff, 1px 0 #fff, 0 -1px #fff;
+	}
+
+	.right {
+		text-align: right;
+	}
+}
+[type=action] .symbol {
+	fill: #b0d9f5;
+	stroke: #333;
+	stroke-width: 2px;
+	&:hover {
+		fill: #c1ebf8;
+	}
+}
+
+.delete-marker {
+	pointer-events: none;
+	fill: red;
+	stroke: #fff;
+	stroke-width: 2;
+}
+
+#board {
+	foreignObject.title {
+		overflow: hidden;
+		body {
+			font-size: 13px;
+			display: table;
+		}
+		div {
+			display: table-cell;
+			text-align: center;
+			vertical-align: middle;
+			word-break: break-all;
+		}
+	}
+	.gear {
+		fill: #0f9c2e;
+		display: none;
+		cursor: pointer;
+	}
+	.nodes>g {
+		cursor: move;
+	}
+	.nodes>g:hover .gear {
+		display: block;
+	}
+}
+
+#svgPanel {
+	overflow: hidden;
+    display: block;
+    height: 100%;
+}
+
+#sidePanel {
+	float: left;
+	height: 100%;
+	overflow: auto;
+	background: #337ab7;
+	width: 250px;
+	transition: width 1s;
+
+	& > ul {
+		margin: 0;
+		padding: 0;
+	}
+
+	&.close {
+		width: 0;
+		overflow: hidden;
+	}
+}
+
+#sideButton {
+	cursor: pointer;
+	fill: #333;
+	&:hover {
+		fill: #31708f;
+	}
+}
+
+.popup {	
+	&, ul {
+		position: absolute;
+		background-color: #fff;
+		padding: 0;
+		margin: 0;
+		border: 1px inset;
+		box-shadow: 2px 2px #888;
+		cursor: pointer;
+	}
+	
+	ul {
+		top: 0;
+		left: 100%;
+		display: none;
+	}
+
+	&.left ul{
+		left: auto;
+		right: 100%;
+	}
+
+	li {
+		padding: 5px;
+		position: relative;
+		white-space: nowrap;
+		list-style-type: none;
+	}
+
+	li:hover {
+		background-color: #d9eaf9;
+		ul {
+			display: block;
+		}
+	}
+
+	a {
+		margin-right: 20px;
+	}
+
+	span {
+		border-top: 4px solid transparent;
+		border-left: 4px dashed #000;
+		border-bottom: 4px solid transparent;
+		margin-top: 4px;
+		float: right;
+	}
+
+	.separator {
+		border-top: 1px solid #666;
+	}
+}
+
+.denied {
+	border: 1px solid red;
+	opacity: 0.5;
+	cursor: not-allowed;
+}
+
+.zoom {
+	position: absolute;
+	fill: none;
+	stroke: #000;
+	stroke-width: 7;
+	stroke-linecap: round;
+	stroke-linejoin: round;
+	stroke-miterlimit: 10;
+	bottom: 20px;
+	right: 20px;
+}
+
+.zoom svg {
+	cursor: pointer;
+	margin: 5px 15px 5px 5px;
+}
+
+.menu {
+	cursor: pointer;
+	position: absolute;
+	top: 10px;
+	right: 10px;
+	width: 100px;
+	height: 24px;
+	text-align: right;
+	stroke: #000;
+
+	&:hover .use-menu {
+		stroke: #31708f;
+	}
+}
+
+.menu-item-move {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.modal .content table {
+	width: 100%;
+	border-spacing: 10px 5px;
+
+	td:nth-child(2), td > input {
+		width: 100%;
+		padding: 3px;
+	}
+}

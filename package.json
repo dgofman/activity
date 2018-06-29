@@ -1,0 +1,50 @@
+{
+  "name": "activity",
+  "version": "1.0.0",
+  "description": "Activity Diagrams",
+  "main": "app.js",
+  "config": {
+    "port": 3000
+  },
+  "scripts": {
+    "postinstall": "bower install && node ./install.js",
+    "install_prod": "npm install --production",
+    "test": "mocha tests/index.js --reporter spec --check-leaks",
+    "cover": "istanbul cover ./node_modules/mocha/bin/_mocha tests/index.js -- --reporter spec",
+    "check": "istanbul check-coverage --statement 100 --branch 100 --function 100 --lines 100",
+    "build-sass": "node-sass --output-style=compressed src/client/scss -o dist/client/css",
+    "watch-sass": "node-sass -w --output-style=expanded src/client/scss -o dist/client/css",
+    "clean": "npm run client && npm run server && npm run lint",
+    "lint": "eslint -c .eslintrc.json dist/**",
+    "client": "tsc --p ./src/client/tsconfig.json",
+    "server": "tsc --p ./src/server/tsconfig.json",
+    "watch-tc": "tsc --watch --p ./src/client/tsconfig.json",
+    "start": "npm run client && npm run server &&  node ./dist/node-es6/server/app.js",
+    "debug": "npm run build-sass | npm run watch-sass | npm run watch-tc | nodemon"
+  },
+  "author": "David Gofman <dgofman@gmail.com>",
+  "license": "ISC",
+  "dependencies": {
+    "@types/d3": "^5.0.0",
+    "@types/debug": "^0.0.30",
+    "@types/sqlite3": "^3.1.3",
+    "@types/chalk": "^2.2.0",
+    "@types/express": "^4.11.1",
+    "express": "^4.16.3",
+    "sqlite3": "^4.0.0",
+    "chalk": "^2.4.1",
+    "node-sass": "^4.9.0"
+  },
+  "devDependencies": {
+    "bower": "^1.8.4",
+    "istanbul": "^0.4.5",
+    "mocha": "^5.1.1",
+    "nodemon": "^1.17.3",
+    "eslint": "^4.19.1"
+  },
+  "eslintIgnore": [
+    "*.js.map",
+    "dist/client/css",
+    "dist/client/vendor"
+  ]
+}

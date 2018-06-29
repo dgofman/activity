@@ -1,0 +1,16 @@
+{
+	"verbose": false,
+	"ext": "ts,t",
+	"exec": "ts-node ./src/server/app.ts",
+	"watch": [
+		"src/server",
+		"src/client/templates"
+	],
+	"ignore": [
+		"*.spec.ts"
+	],
+	"env": {
+		"NODE_ENV": "development",
+		"DEBUG": "activity:*"
+	}
+}

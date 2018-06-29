@@ -1,0 +1,64 @@
+html {
+	height: 100%;
+	>body {
+		height: 100%;
+		margin: 0;
+		display: flex;
+		flex-direction: column;
+	}
+}
+
+.body {
+	width: 100%;
+	height: 100%;
+	margin: 0;
+}
+
+header {
+	height: 40px;
+	border: 1px solid #1c50d8;
+	background-color: #31708f;
+
+	span {
+		float: right;
+		color: #fff;
+		margin: 10px;
+	}
+}
+
+section {
+	flex: 1;
+	height: 100%;
+	width: 100%;
+	overflow: hidden;
+	position: relative;
+}
+
+.hidden {
+	display: none;
+}
+
+.error {
+	font-size: 10px;
+    color: red;
+    text-align: center;
+	font-weight: bold;
+	overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.noselect, text {
+	-webkit-touch-callout: none;
+	/* iOS Safari */
+	-webkit-user-select: none;
+	/* Safari */
+	-khtml-user-select: none;
+	/* Konqueror HTML */
+	-moz-user-select: none;
+	/* Firefox */
+	-ms-user-select: none;
+	/* Internet Explorer/Edge */
+	user-select: none;
+	/* Non-prefixed version, currently supported by Chrome and Opera */
+}
